@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Budget App</title>
+    <link rel="icon" type="image/png" sizes="512x512" href="icon-512.png" />
+    <link rel="stylesheet" href="style.css">
+    <meta name="theme-color" content="#171a1c">
+    
+
+</head>
+<body>
+    
+    <h1>ExpenseTracker.</h1>
+    <div class="container">
+        <div class="input-fields">
+            <input type="text" class="purpose-input" placeholder="purpose" hidden>
+            <input type="number" class="amount-input" placeholder="Amount" hidden>
+            <button class="add-expense-btn" onclick="addExpense()"> + Add Expense</button>
+            
+            <div class="prev-input-div">
+                <input type="text" class="prev-purpose-input" placeholder="purpose" hidden>
+                <input type="number" class="prev-amount-input" placeholder="Amount" hidden>
+                <input type="date" class="date-input" hidden>
+                <input type="time" class="time-input" hidden>
+                <button class="add-prev-expense-btn" onclick="addPrevExpense()"> + Add Previous Expense</button>
+            </div>
+        </div>
+        
+        
+        <div class="filter-area">
+            <div >
+                <p class="filter-text">Filter</p>
+                <select id="months" onchange="filterList((document.getElementById('months').value),(document.getElementById('select-years').value))">
+                    <option value="0" selected>All</option>
+                    <option value="1">Jan</option>
+                    <option value="2">Feb</option>
+                    <option value="3">Mar</option>
+                    <option value="4">April</option>
+                    <option value="5">May</option>
+                    <option value="6">June</option>
+                    <option value="7">July</option>
+                    <option value="8">Aug</option>
+                    <option value="9">Sept</option>
+                    <option value="10">Oct</option>
+                    <option value="11">Nov</option>
+                    <option value="12">Dec</option>
+                </select>
+                <br>
+                <select name="years" id="select-years" onchange="renderList(document.getElementById('months').value,document.getElementById('select-years').value)">
+                    <option value="2025">2025</option>
+                </select>
+            </div>
+             
+            <p class="filter-sum"></p>
+        </div>
+        
+        <div class="list-headings">
+            <p class="heading-purpose">Purpose</p>
+            <p class="heading-amount">Amount(Rs.)</p>
+            <p class="heading-actions">Actions</p>
+        </div>
+        <div class="expense-list">
+            
+        </div>
+
+        <div class="total-amount"></div>
+        <button class="clear-btn" onclick="clearData()">Clear all data</button>
+    </div>
+    <hr>
+    <footer>
+        <p>made by Debesh</p>
+    </footer>
+
+    <script src="Components.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>

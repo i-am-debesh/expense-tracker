@@ -99,9 +99,9 @@ h1{
 .expense-list {
     
     background-color: rgba(22, 22, 22, 0);
-    padding: 1rem;
+    padding: 0.3rem;
     margin: 0.4rem;
-    min-height: 200px;
+    min-height: 300px;
     max-height: 500px;
     overflow-y: auto;
     border: 1px solid #ccc;
@@ -124,7 +124,7 @@ h1{
     /* font-size: large; */
     /* background-color: aqua; */
     max-width: 50px;
-    font-size: large;
+    font-size: medium;
     overflow-wrap: break-word;
     
 }

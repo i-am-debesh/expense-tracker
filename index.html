@@ -5,75 +5,115 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Expense Tracker App</title>
     <link rel="icon" type="image/png" href="/images/favicon.png">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="/styles/style.css">
+    <link rel="stylesheet" href="/styles/logStyle.css">
+    <link rel="stylesheet" href="/styles/passCodePage.css">
     <meta name="theme-color" content="#171a1c">
     
 
 </head>
 <body>
     
-    <h1>ExpenseTracker.</h1>
-    <div class="container">
-        <div class="input-fields">
-            <input type="text" class="purpose-input" placeholder="purpose" hidden>
-            <input type="number" class="amount-input" placeholder="Amount" hidden>
-            <button class="add-expense-btn" onclick="addExpense()"> + Add Expense</button>
-            
-            <div class="prev-input-div">
-                <input type="text" class="prev-purpose-input" placeholder="purpose" hidden>
-                <input type="number" class="prev-amount-input" placeholder="Amount" hidden>
-                <input type="date" class="date-input" hidden>
-                <input type="time" class="time-input" hidden>
-                <button class="add-prev-expense-btn" onclick="addPrevExpense()"> + Add Previous Expense</button>
-            </div>
+    <div class="pass-code-page" id="pass-code-page" hidden>
+        <div>
+            <p class="pass-code-label">Enter passcode</p>
+            <input type="number" id="pass-code-input" placeholder="***-***">
+        </div>
+        <div>
+            <button id="pass-code-submit-btn" onclick="checkPassCode(document.getElementById('pass-code-input').value)">Enter</button>
         </div>
         
-        
-        <div class="filter-area">
-            <div >
-                <p class="filter-text">Filter</p>
-                <select id="months" onchange="filterList((document.getElementById('months').value),(document.getElementById('select-years').value))">
-                    <option value="0" selected>All</option>
-                    <option value="1">Jan</option>
-                    <option value="2">Feb</option>
-                    <option value="3">Mar</option>
-                    <option value="4">April</option>
-                    <option value="5">May</option>
-                    <option value="6">June</option>
-                    <option value="7">July</option>
-                    <option value="8">Aug</option>
-                    <option value="9">Sept</option>
-                    <option value="10">Oct</option>
-                    <option value="11">Nov</option>
-                    <option value="12">Dec</option>
-                </select>
-                <br>
-                <select name="years" id="select-years" onchange="renderList(document.getElementById('months').value,document.getElementById('select-years').value)">
-                    <option value="2025">2025</option>
-                </select>
-            </div>
-             
-            <p class="filter-sum"></p>
-        </div>
-        
-        <div class="list-headings">
-            <p class="heading-purpose">Purpose</p>
-            <p class="heading-amount">Amount(Rs.)</p>
-            <p class="heading-actions">Actions</p>
-        </div>
-        <div class="expense-list">
-            
-        </div>
-
-        <div class="total-amount"></div>
-        <button class="clear-btn" onclick="clearData()">Clear all data</button>
     </div>
-    <hr>
-    <footer>
-        <p>made by Debesh</p>
-    </footer>
 
-    <script src="Components.js"></script>
-    <script src="script.js"></script>
+    <div class="log-in-page" id="log-in-page" hidden>
+        <div class="log-container">
+            <div class="controls">
+                <div>
+                <input type="text" placeholder="user ID" id="userId">
+                </div>
+                <div>
+                    <input type="password" name="" id="pass" placeholder="password"> 
+                </div>
+                <div>
+                    <input type="number" name="" id="pass-code" placeholder="passcode"> 
+                    <p class="pass-code-info" style="color: rgb(23, 207, 17);">(Remember this passcode for future login credential)</p>
+                </div>
+                <div>
+                    <button id="log-in-btn" onclick="saveUser(document.getElementById('userId').value,document.getElementById('pass').value,document.getElementById('pass-code').value)">Log-in</button>
+                </div>
+            </div>
+            
+        </div>
+    </div>
+
+
+    <div class="app" hidden>
+
+    
+        <h1>ExpenseTracker.</h1>
+        <div class="container">
+            <div class="input-fields">
+                <input type="text" class="purpose-input" placeholder="purpose" hidden>
+                <input type="number" class="amount-input" placeholder="Amount" hidden>
+                <button class="add-expense-btn" onclick="addExpense()"> + Add Expense</button>
+                
+                <div class="prev-input-div">
+                    <input type="text" class="prev-purpose-input" placeholder="purpose" hidden>
+                    <input type="number" class="prev-amount-input" placeholder="Amount" hidden>
+                    <input type="date" class="date-input" hidden>
+                    <input type="time" class="time-input" hidden>
+                    <button class="add-prev-expense-btn" onclick="addPrevExpense()"> + Add Previous Expense</button>
+                </div>
+            </div>
+            
+            
+            <div class="filter-area">
+                <div >
+                    <p class="filter-text">Filter</p>
+                    <select id="months" onchange="filterList((document.getElementById('months').value),(document.getElementById('select-years').value))">
+                        <option value="0" selected>All</option>
+                        <option value="1">Jan</option>
+                        <option value="2">Feb</option>
+                        <option value="3">Mar</option>
+                        <option value="4">April</option>
+                        <option value="5">May</option>
+                        <option value="6">June</option>
+                        <option value="7">July</option>
+                        <option value="8">Aug</option>
+                        <option value="9">Sept</option>
+                        <option value="10">Oct</option>
+                        <option value="11">Nov</option>
+                        <option value="12">Dec</option>
+                    </select>
+                    <br>
+                    <select name="years" id="select-years" onchange="renderList(document.getElementById('months').value,document.getElementById('select-years').value)">
+                        <option value="2025">2025</option>
+                    </select>
+                </div>
+                
+                <p class="filter-sum"></p>
+            </div>
+            
+            <div class="list-headings">
+                <p class="heading-purpose">Purpose</p>
+                <p class="heading-amount">Amount(Rs.)</p>
+                <p class="heading-actions">Actions</p>
+            </div>
+            <div class="expense-list">
+                
+            </div>
+
+            <div class="total-amount"></div>
+            <button class="clear-btn" onclick="clearData()">Clear all data</button>
+        </div>
+        <hr>
+        <footer>
+            <p>made by Debesh</p>
+        </footer>
+    </div>
+
+    <script src="/scripts/Components.js"></script>
+    <script src="/scripts/script.js"></script>
+    <script src="/scripts/logIn.js"></script>
 </body>
 </html>
